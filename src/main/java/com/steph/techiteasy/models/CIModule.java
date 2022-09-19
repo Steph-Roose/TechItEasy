@@ -1,17 +1,20 @@
 package com.steph.techiteasy.models;
 
+import javax.persistence.*;
+
+@Entity
 public class CIModule {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
     private String name;
     private String type;
     private Double price;
 
-    public CIModule(Long id, String name, String type, Double price) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.price = price;
-    }
+    @ManyToOne
+    @JoinColumn(name = "tv_id")
+    Television tv;
 
     public Long getId() {
         return id;

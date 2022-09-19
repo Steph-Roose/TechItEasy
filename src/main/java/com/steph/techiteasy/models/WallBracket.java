@@ -1,19 +1,24 @@
 package com.steph.techiteasy.models;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class WallBracket {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
     private String size;
     private Boolean adjustable;
     private String name;
     private Double price;
 
-    public WallBracket(Long id, String size, Boolean adjustable, String name, Double price) {
-        this.id = id;
-        this.size = size;
-        this.adjustable = adjustable;
-        this.name = name;
-        this.price = price;
-    }
+    @ManyToMany
+    @JoinTable(name = "televisions_wallbrackets",
+        joinColumns = @JoinColumn(name = "tv_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "wallbracket_id", referencedColumnName = "id"))
+    List<Television> televisions;
 
     public Long getId() {
         return id;

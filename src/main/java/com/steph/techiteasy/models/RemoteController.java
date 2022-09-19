@@ -1,7 +1,13 @@
 package com.steph.techiteasy.models;
 
+import javax.persistence.*;
+
+@Entity
 public class RemoteController {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
     private String compatibleWith;
     private String batteryType;
     private String name;
@@ -9,15 +15,8 @@ public class RemoteController {
     private Double price;
     private Integer originalStock;
 
-    public RemoteController(Long id, String compatibleWith, String batteryType, String name, String brand, Double price, Integer originalStock) {
-        this.id = id;
-        this.compatibleWith = compatibleWith;
-        this.batteryType = batteryType;
-        this.name = name;
-        this.brand = brand;
-        this.price = price;
-        this.originalStock = originalStock;
-    }
+    @OneToOne
+    Television tv;
 
     public Long getId() {
         return id;

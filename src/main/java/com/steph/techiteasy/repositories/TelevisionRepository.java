@@ -3,6 +3,8 @@ package com.steph.techiteasy.repositories;
 import com.steph.techiteasy.models.Television;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TelevisionRepository extends JpaRepository<Television, Long> {
+import java.util.List;
 
+public interface TelevisionRepository extends JpaRepository<Television, Long> {
+    List<Television> findAllTelevisionsByBrandEqualsIgnoreCase(String brand);
 }
